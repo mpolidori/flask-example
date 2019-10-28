@@ -84,6 +84,9 @@ We are using `flask-migrate` with `SQLite`::
 
 >...it is in general a good practice to set configuration from environment variables, and provide a fallback value when the environment does not define the variable. In this case I'm taking the database URL from the DATABASE_URL environment variable, and if that isn't defined, I'm configuring a database named app.db located in the main directory of the application, which is stored in the basedir variable.
 
+- SQLite will automatically check for an existing database and create one for you, if there isn't one present. **This is not the case for MySQL or PostgreSQL**
+- `flask-sqlalchemy` uses "snake case" naming for DB tables by default
+
 #### Database models
 
 >The data that will be stored in the database will be represented by a collection of classes, usually called database models. The ORM layer within SQLAlchemy will do the translations required to map objects created from these classes into rows in the proper database tables.
