@@ -130,3 +130,5 @@ class User(db.Model):
   - `is_active`: a property that is True if the user's account is active or False otherwise.
   - `is_anonymous`: a property that is False for regular users, and True for a special, anonymous user.
   - `get_id()`: a method that returns a unique identifier for the user as a string (unicode, if using Python 2).
+
+>Flask-Login keeps track of the logged in user by storing its unique identifier in Flask's user session
