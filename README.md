@@ -103,3 +103,30 @@ Most extensions are initialized like this (in the `__init__.py`):
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 ```
+
+### Logins
+
+Password hashing and verification:
+
+```
+from werkzeug.security import generate_password_hash, check_password_hash
+
+# ...
+
+class User(db.Model):
+    # ...
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+```
+
+`flask-login`:
+
+- Required items
+  - `is_authenticated`: a property that is True if the user has valid credentials or False otherwise.
+  - `is_active`: a property that is True if the user's account is active or False otherwise.
+  - `is_anonymous`: a property that is False for regular users, and True for a special, anonymous user.
+  - `get_id()`: a method that returns a unique identifier for the user as a string (unicode, if using Python 2).
